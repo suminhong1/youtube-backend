@@ -17,3 +17,7 @@ youtube clone project
 - @Column : 엔티티의 대표값 이외의 값들
 
 ### Repository(레포지토리)
+
+- 엔티티가 DB 속 테이블에 저장 및 관리할 수 있게 도와주는 인터페이스
+- 대표적으로 사용하는 인터페이스 : JpaRepository
+- CRUD만 사용하는 인터페이스 : CrudRepository
