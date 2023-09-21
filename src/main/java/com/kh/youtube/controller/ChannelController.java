@@ -74,7 +74,7 @@ public class ChannelController {
 
         // 파일 업로드가 끝났으니 경로 (savePhoto), name, desc, memberId(id)
         Channel vo = new Channel();
-        vo.setChannelPhoto(savePhoto);
+        vo.setChannelPhoto(uuid + "_" + filePhoto);
         vo.setChannelName(name);
         vo.setChannelDesc(desc);
         Member member = new Member();
