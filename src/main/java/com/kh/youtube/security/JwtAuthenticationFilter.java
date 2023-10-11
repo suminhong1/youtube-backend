@@ -1,6 +1,5 @@
 package com.kh.youtube.security;
 
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // 한 번�
     private TokenProvider tokenProvider;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 요청에서 토큰 가져오기
         String token = parseBearerToken(request);
         // 토큰 검사
@@ -45,6 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // 한 번�
         }
         filterChain.doFilter(request, response);
     }
+
     private String parseBearerToken(HttpServletRequest request) {
         // Http 요청의 헤더를 파싱해 Bearer 토큰을 리턴한다.
         String bearerToken = request.getHeader("Authorization");

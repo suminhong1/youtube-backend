@@ -1,5 +1,6 @@
 package com.kh.youtube.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,17 +8,18 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.util.Date;
+
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @DynamicInsert
 public class Channel {
 
     @Id
     @Column(name="channel_code")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "channelSequence")
-    @SequenceGenerator(name="channelSequence", sequenceName="SEQ_CHANNEL", allocationSize = 1)
+    @SequenceGenerator(name="channelSequence", sequenceName = "SEQ_CHANNEL", allocationSize = 1)
     private int channelCode;
 
     @Column(name="channel_name")
@@ -32,9 +34,8 @@ public class Channel {
     @Column(name="channel_date")
     private Date channelDate;
 
-    @ManyToOne  // Channel 엔티티와 Member 엔티티를 다대일 관계로 설정
-    @JoinColumn(name = "id")  // 외래 키(Foreign Key) 이름을 지정
+    @JsonIgnore
+    @ManyToOne // Channel 엔티티와 Member 엔티티를 다대일 관계로 설정
+    @JoinColumn(name="id")
     private Member member;
-
-
 }

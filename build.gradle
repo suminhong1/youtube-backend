@@ -47,27 +47,33 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// QuerySDL 관련 여기부터 추가
+// QueryDSL 관련 여기부터 추가
 //def generated = 'src/main/generated'
 //
 //clean {
 //	delete file (generated)
 //}
-//
-//
+
 //querydsl {
+//library = "com.querydsl:querydsl-apt:5.0.0" // 사용할 AnnotationProcessor 정의
 //	jpa = true
 //	querydslSourcesDir = generated
 //}
 //sourceSets {
 //	main.java.srcDir generated
 //}
-//
+
+// complieQuerydsl Task에 clean 동작 추가
 //tasks.compileQuerydsl.dependsOn(clean);
 //
 //compileQuerydsl{
 //	options.annotationProcessorPath = configurations.querydsl
 //}
+//
+//configurations {
+//	querydsl.extendsFrom compileClasspath
+//}
+//
 //configurations {
 //	compileOnly {
 //		extendsFrom annotationProcessor

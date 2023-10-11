@@ -16,14 +16,17 @@ public class CategoryService {
     public List<Category> showAll() {
         return dao.findAll();
     }
+
     public Category show(int code) {
         return dao.findById(code).orElse(null);
     }
 
-    public Category create(Category category){
+    public Category create(Category category) {
         return dao.save(category);
     }
-    public Category update(Category category){
+
+    public Category update(Category category) {
+
         return dao.save(category);
     }
 

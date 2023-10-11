@@ -7,29 +7,28 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.util.Date;
+
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @DynamicInsert
 public class Subscribe {
 
     @Id
     @Column(name="subs_code")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "subSequence")
-    @SequenceGenerator(name="subSequence", sequenceName="SEQ_SUBSCRIBE", allocationSize = 1)
+    @SequenceGenerator(name="subSequence", sequenceName = "SEQ_SUBSCRIBE", allocationSize = 1)
     private int subsCode;
 
     @Column(name="subs_date")
     private Date subsDate;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name="id")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "channel_code")
+    @JoinColumn(name="channel_code")
     private Channel channel;
-
-
 }

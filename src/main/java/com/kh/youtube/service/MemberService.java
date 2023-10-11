@@ -21,7 +21,7 @@ public class MemberService {
     }
 
     public Member show(String id) {
-        return dao.findById(id).orElse(null); //SELECT * FROM MEMBER WHRER id=?
+        return dao.findById(id).orElse(null); // SELECT * FROM MEMBER WHERE id=?
     }
 
     // INSERT INTO MEMBER(ID, PASSWORD, NAME, AUTHORITY)
@@ -33,13 +33,12 @@ public class MemberService {
 
     // UPDATE MEMBER SET ID=?, PASSWORD=?, NAME=?, AUTHORITY=?
     // WHERE ID=?
-    public Member update(Member member){
-
+    public Member update(Member member) {
         Member target = dao.findById(member.getId()).orElse(null);
         if(target!=null) {
             return dao.save(member);
         }
-            return null;
+        return null;
     }
 
     // DELETE FROM MEMBER WHERE ID=?
@@ -48,11 +47,13 @@ public class MemberService {
         dao.delete(target);
         return target;
     }
-    public Member getByCredentials(String id, String password, PasswordEncoder encoder){
+
+    public Member getByCredentials(String id, String password, PasswordEncoder encoder) {
         Member member = dao.findById(id).orElse(null);
         if(member!=null && encoder.matches(password, member.getPassword())) {
             return member;
         }
         return null;
     }
+
 }

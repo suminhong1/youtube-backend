@@ -1,5 +1,7 @@
 package com.kh.youtube.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,17 +9,19 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.util.Date;
+
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @DynamicInsert
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Video {
 
     @Id
     @Column(name="video_code")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "videoSequence")
-    @SequenceGenerator(name="videoSequence", sequenceName="SEQ_VIDEO", allocationSize = 1)
+    @SequenceGenerator(name="videoSequence", sequenceName = "SEQ_VIDEO", allocationSize = 1)
     private int videoCode;
 
     @Column(name="video_title")
@@ -39,15 +43,14 @@ public class Video {
     private String videoPhoto;
 
     @ManyToOne
-    @JoinColumn(name = "category_code")
+    @JoinColumn(name="category_code")
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "channel_code")
+    @JoinColumn(name="channel_code")
     private Channel channel;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name="id")
     private Member member;
-
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CommetLikeService {
+public class CommentLikeService {
 
     @Autowired
     private CommentLikeDAO dao;
@@ -16,24 +16,27 @@ public class CommetLikeService {
     public List<CommentLike> showAll() {
         return dao.findAll();
     }
+
     public CommentLike show(int id) {
         return dao.findById(id).orElse(null);
     }
 
-    public CommentLike create(CommentLike vo){
+    public CommentLike create(CommentLike vo) {
         return dao.save(vo);
     }
+
     public CommentLike update(CommentLike vo) {
         CommentLike target = dao.findById(vo.getCommLikeCode()).orElse(null);
-        if(target!=null){
+        if(target!=null) {
             return dao.save(vo);
         }
         return null;
     }
 
     public CommentLike delete(int id) {
-        CommentLike data = dao.findById(id).orElse(null);
-        dao.delete(data);
-        return data;
+        CommentLike target = dao.findById(id).orElse(null);
+        dao.delete(target);
+        return target;
     }
+
 }

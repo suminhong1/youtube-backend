@@ -14,13 +14,13 @@ public class ChannelService {
 
     @Autowired
     private ChannelDAO channelDAO;
+
     @Autowired
     private MemberDAO memberDAO;
 
     public List<Channel> showAll() {
         return channelDAO.findAll();
     }
-
 
     public Channel show(int id) {
         Channel channel = channelDAO.findById(id).orElse(null);
@@ -35,10 +35,10 @@ public class ChannelService {
 
     public Channel update(Channel channel) {
         Channel target = channelDAO.findById(channel.getChannelCode()).orElse(null);
-        if(target!=null){
+        if(target!=null) {
             return channelDAO.save(channel);
         }
-       return null;
+        return null;
     }
 
     public Channel delete(int id) {
@@ -51,4 +51,5 @@ public class ChannelService {
     public List<Channel> showMember(String id) {
         return channelDAO.findByMemberId(id);
     }
+
 }
