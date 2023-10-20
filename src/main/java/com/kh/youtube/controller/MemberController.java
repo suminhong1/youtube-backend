@@ -64,4 +64,14 @@ public class MemberController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/user/show")
+    public ResponseEntity<List<Member>> showMember() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.showAll());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 }
+
